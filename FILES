@@ -3,3 +3,25 @@ AUTHORS
 INSTALL
 src/
 doc/
+
+src/
+Main.py
+lanedetection.py
+points.py
+orientation.py
+test/
+video1.mp4
+video2.mp4
+video3.mp4
+video4.mp4
+/install_opencv
+linux.sh
+macosx.sh
+
+doc/
+--- presentacion.pdf
+--- presentacion.tex
+--- Reporte.pdf
+--- Reporte.tex
+
+
