@@ -16,7 +16,7 @@ Para correr el programa, en la terminal,
 una vez ubicado en el directorio raiz del proyecto
 y escribir el comando:
 
-  	python Main.py
+    python Main.py
 
 
 Uso
@@ -28,8 +28,8 @@ las graficas así como las medidas de desempeño
 
 Configuracion Tiempo real o test de un video:
 
-REALTIME : True (Captura de una Webcam)
-REALTIME : False (Test desde un video)
+    REALTIME : True (Captura de una Webcam)
+    REALTIME : False (Test desde un video)
 
 Acerca de
 =========
