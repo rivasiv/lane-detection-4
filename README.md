@@ -1,6 +1,5 @@
 Lane Detection
 ===============
-Blog: http://synnick.blogspot.com
 
 Instalación
 ===========
