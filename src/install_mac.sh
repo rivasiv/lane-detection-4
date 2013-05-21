@@ -1,1 +1,0 @@
-arch=$(uname -m)
