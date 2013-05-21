@@ -1,12 +1,13 @@
 import cv2 as cv
 import numpy as np
 
-#Filtro normalizar
+#normalizar 
 def normalize(a):
     return (a-np.min(a))/(np.max(a)-np.min(a))
 
-class marcador():
+class LineDetection():
     def __init__(self):
+        #Valores RGB, HSV 
         self.avgRGB = [ 0.8888889,   0.99607843,  0.98823529 ]
         self.avgHSV = [ 1.75261841e+02,   1.07563006e-01,   9.96078432e-01 ]
         self.lineProbabilityMap = 0
@@ -38,3 +39,8 @@ class marcador():
             cv.imshow(windowName, mask*255)
             self.UpdateModelFromMask(mask, img, hsv)
         cv.destroyWindow(windowName)
+        
+def main()
+    pass
+
+
