@@ -1,6 +1,5 @@
 import cv2 as cv
-from LaneDetection import LaneDetection
-from LaneMarkersModel import normalize
+from LaneDetection import LaneDetection,normalize
 import numpy as np
 from marcador import marcador
 from Line import Line
@@ -56,11 +55,11 @@ flag, resize = capture.read()
 img = resize[AI[1]:AI[3], AI[0]:AI[2]]
 
 #Initialize left lane
-leftLineColorModel = LaneMarkersModel()
+leftLineColorModel = LaneDetection()
 leftLine = LineDetector(AI, sensorsNumber, sensorsWidth, line1LStart, line1LEnd, leftLineColorModel)
 
 #Initialize right lane
-rightLineColorModel = LaneMarkersModel()
+rightLineColorModel = LaneDetection()
 #rightLineColorModel.InitializeFromImage(np.float32(img)/255.0, "Select right line")
 rightLine = LineDetector(AI, sensorsNumber, sensorsWidth, line1RStart, line1REnd, rightLineColorModel)
 
