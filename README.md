@@ -30,15 +30,3 @@ Configuracion Tiempo real o test de un video:
     REALTIME : True (Captura de una Webcam)
     REALTIME : False (Test desde un video)
 
-Acerca de
-=========
-
-Este programa es un proyecto para la materia de Visión Computacional
-de la carrera de Ingeniería en Tecnología de Software en la Facultad 
-de Ingeniería Mecánica y Eléctrica, impartida por la Doctora Elisa
-Schaeffer. 
-
-Página Web del curso:
-http://elisa.dyndns-web.com/~elisa/teaching/comp/vision/2013.html
-
-Fecha Última de Modificación: 21 de Mayo de 2013
