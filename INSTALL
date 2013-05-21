@@ -1,3 +1,18 @@
 ==========================
 Instalando Lane Detection
 ==========================
+
+Es necesario tener instalado las siguientes librerias : 
+
+Linux:
+
+Numpy
+sudo apt-get install numpy
+
+Python
+sudo apt-get install python
+
+OpenCV
+sudo apt-get install python-opencv
+
+
