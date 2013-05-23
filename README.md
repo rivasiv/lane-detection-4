@@ -23,8 +23,8 @@ contiene lo necesario para hacer un analisis de desempeño
 
 Tiempo real o test de un video:
 
-    REALTIME : True (Captura de una Webcam)
-    REALTIME : False (Test desde un video)
+    True (Captura de una Webcam)
+    False (Test desde un video)
     
 Para correr el programa, en la terminal,una vez ubicado en el directorio raiz del proyecto
 y escribir el comando:
