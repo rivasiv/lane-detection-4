@@ -62,22 +62,21 @@ class Lane():
         segmentProbability = 0
 
         for x in range(1, canny.shape[0]):
-            if canny[x] > 0 and (x - segStart) > 2: #skip Linea which have less than 2 pixels including 1 edge
+            if canny[x] > 0 and (x - segStart) > 2: 
                 segmentProbability = np.average(probability[segStart:x])
                 segments.append([segStart, x, segmentProbability])
                 segStart = x
         
-        #find line segments
+        #Buscamos segmentos de lineas
         lineSegments = []
         for seg in segments:
             segmentProbability = seg[2]
-            #just check color
             if segmentProbability > 0.85:
                 segmentProbability = 1
             else:
                 segmentProbability = 0
             
-            #check line width
+            #ancho de linea 
             if self.lineWidth[1] > 10: 
                 if abs((seg[1]-seg[0])-self.lineWidth[0]/self.lineWidth[1]) > 5+50/self.lineWidth[1]:
                     segmentProbability = 0
@@ -87,10 +86,10 @@ class Lane():
                 lineSegments.append([self.xPos+seg[0], self.xPos+seg[1]])
         
         lineCenter = previousLineCenterPosition-self.xPos
-        if len(lineSegments) == 0 and len(segments) >= 3: #we have not found any line segments but we still have some segments 
-            #lets try to recover and update the model if we have a segment which looks good
+        if len(lineSegments) == 0 and len(segments) >= 3: 
+            #En esta parte se busca si el segmento cumple las condiciones y se actualiza
             for seg in segments:
-                if(seg[0] <= lineCenter and seg[1] >= lineCenter and self.lineWidth[1] > 10): #maybe it's actually a line...
+                if(seg[0] <= lineCenter and seg[1] >= lineCenter and self.lineWidth[1] > 10): 
                     if abs((seg[1]-seg[0])-self.lineWidth[0]/self.lineWidth[1]) < 10:
                         lineSegments.append([self.xPos+seg[0], self.xPos+seg[1]])
         
