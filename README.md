@@ -17,10 +17,6 @@ para ejecutarlo correctamente, ver el archivo "INSTALL".
 Uso
 ===
 
-El programa inmediatmente empieza a procesar un video y aparece una ventana de reproduccion 
-de lo que se esta obteniendo Al final de la ejecucion se guarda un archivo log 
-contiene lo necesario para hacer un analisis de desempeño
-
 Tiempo real o test de un video:
 
     True (Captura de una Webcam)
