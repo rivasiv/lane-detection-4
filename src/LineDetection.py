@@ -57,64 +57,42 @@ class LineDetector():
     def CheckLinePositionAndDrawOutput(self, original, img):
         #arduino = serial.Serial('/dev/tty.usbmodem1411', 9600)
         #time.sleep(1) # waiting the initialization...
-
         testLineXOkColor = np.array([0,255,0])/1.0
-
         testLineXAlertColor = np.array([0,128,255])/1.0
-        testLineXDangerColor = np.array([0,0,255])/1.0
-        
         testLeftLineXAlert = 130
-        testLeftLineXDanger = 130
-
         testRightLineXAlert = 550
-        testRightLineXDanger = 550
-
         testLeftLineY = 100
         
         #find intersection of a lane edge and test line
         testLeftLineIntersection = int(self.lineModel(testLeftLineY))
         
 
-        #make final output
+        #final de un punto
         orientation = 'Ok'
         orientationColor = [0, 255, 0]
 
         if testLeftLineIntersection < img.shape[1]/2: 
             if testLeftLineXAlert < testLeftLineIntersection: 
-                orientation = 'AlertLeft'
+                orientation = 'izquierda'
                 orientationColor = testLineXAlertColor
-            if testLeftLineXDanger < testLeftLineIntersection: 
-                orientation = 'DangerLeft'
-                orientationColor = testLineXDangerColor
 
         if testLeftLineIntersection > img.shape[1]/2: 
             if testLeftLineIntersection < testRightLineXAlert: 
-                orientation = 'AlertRight'
+                orientation = 'derecha'
                 orientationColor = testLineXAlertColor
-            if testLeftLineIntersection < testRightLineXDanger: 
-                orientation = 'DangerRight'
-                orientationColor = testLineXDangerColor
 
         cv.line(original, (self.interes[0]+int(self.lineModel(0)), self.interes[1]+0), (self.interes[0]+int(self.lineModel(img.shape[0])), self.interes[1]+img.shape[0]), [0, 255, 0], 4)        
 
-
-        if orientation == 'AlertLeft' or orientation == 'DangerLeft':
+        if orientation == 'izquierda':
             cv.line(original, (img.shape[1]/2,50), (img.shape[1]/2-25,75), orientationColor, 15)
             cv.line(original, (img.shape[1]/2,100), (img.shape[1]/2-25,75), orientationColor, 15)
             #arduino.write('R')
             #time.sleep(1) 
             print "Orientacion: Hacia la Izquierda"
 
-        if orientation == 'DangerLeft':
-            cv.line(original, (img.shape[1]/2-30,50), (img.shape[1]/2-25-30,75), orientationColor, 15)
-            cv.line(original, (img.shape[1]/2-30,100), (img.shape[1]/2-25-30,75), orientationColor, 15)
-
-        if orientation == 'AlertRight' or orientation == 'DangerRight':
+        if orientation == 'derecha' :
             cv.line(original, (img.shape[1]/2,50), (img.shape[1]/2+25,75), orientationColor, 15)
             cv.line(original, (img.shape[1]/2,100), (img.shape[1]/2+25,75), orientationColor, 15)
             #arduino.write('L')
             print "Orientacion: Hacia la Derecha"
 
-        if orientation == 'DangerRight':
-            cv.line(original, (img.shape[1]/2+30,50), (img.shape[1]/2+25+30,75), orientationColor, 15)
-            cv.line(original, (img.shape[1]/2+30,100), (img.shape[1]/2+25+30,75), orientationColor, 15)
