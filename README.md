@@ -33,6 +33,16 @@ Para correr el programa, en la terminal,una vez ubicado en el directorio raiz de
 y escribir el comando:
 
     python Main.py [OPCION] 
+  
+En el archivo log.txt ubicado en src/ se encuentran el tiempo que se tarda en 
+procesar por frame asi como el tiempo promedio
+
+Ejemplo:
+===
+Ejecución de un ejemplo 
+
+    python ./src/Main.py ./test/009-1.mp4 
+    
     
 Acerca de :
 ===
