@@ -15,15 +15,15 @@ Para correr el programa, en la terminal,
 una vez ubicado en el directorio raiz del proyecto
 y escribir el comando:
 
-    python Main.py
+    python Main.py [Nombre_video] 
 
 
 Uso
 ===
 
 El programa inmediatmente empieza a procesar un video y aparece una ventana de reproduccion 
-de lo que se esta obteniendo Al final de la corrida se muestran 
-las graficas así como las medidas de desempeño
+de lo que se esta obteniendo Al final de la ejecucion se guarda un archivo log 
+contiene lo necesario para hacer un analisis de desempeño
 
 Configuracion Tiempo real o test de un video:
 
