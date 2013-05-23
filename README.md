@@ -34,11 +34,13 @@ y escribir el comando:
 
     python Main.py [OPCION] 
     
-Mas Informacion
+Acerca de :
 ===
+Mas información sobre el proyecto:
 [Blog personal](http://blog.rafaellopezgtz.com)
 
-Proyecto final de la materia de Visión Computacional de la carrera Ingeniería en Tecnologías de Software, FIME, UANL.
+Proyecto de Visión Computacional de la carrera Ingeniería en Tecnologías de Software en la Facultad de Ingenieriía Mecanica 
+y Eléctrica.
 Impartida por la Dra. Elisa Schaeffer
 
 
