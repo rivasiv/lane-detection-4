@@ -30,4 +30,4 @@ Configuracion Tiempo real o test de un video:
     REALTIME : True (Captura de una Webcam)
     REALTIME : False (Test desde un video)
 
-[Contact page](http://blog.rafaellopezgtz.com)
+[blog](http://blog.rafaellopezgtz.com)
