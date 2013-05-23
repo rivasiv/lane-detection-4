@@ -39,9 +39,8 @@ Acerca de :
 Mas información sobre el proyecto:
 [Blog personal](http://blog.rafaellopezgtz.com)
 
-Proyecto de Visión Computacional de la carrera Ingeniería en Tecnologías de Software en la Facultad de Ingenieriía Mecanica 
-y Eléctrica.
-Impartida por la Dra. Elisa Schaeffer
+Proyecto de Visión Computacional de la carrera Ingeniería en Tecnología de Software en la Facultad de Ingeniería Mecanica 
+y Eléctrica,Impartida por la Dra. Elisa Schaeffer.
 
 
 Fecha Actualizacion: 23 Mayo 2013
