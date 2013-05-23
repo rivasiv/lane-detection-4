@@ -1,9 +1,120 @@
 import cv2 as cv
 import numpy as np
+from orientation import Lane
+import serial, time 
 
+AI = [0, 124, 637, 298]
+RH = (0.8318770212301404, 0.784796499543384, 0.6864621111668014)
+RS = (41.02017792349725, 0.17449159984689502, 0.832041028240797)
 
+class LineDetector():
+    def __init__(self, interes, x1, x2, color):
+        self.lineorientation_Zs = []
+        self.lineModel = None
+        self.interes = None
+        self.Initialize(interes, x1, x2, color)
+
+    def Initialize(self, interes, x1, x2, color):
+        self.interes = interes
+        for iorientation_Z in range(0,50):
+            orientation_Z = Lane()
+            pos = x1 + iorientation_Z*(x2-x1)/(51)
+            orientation_Z.config(pos,70)
+            orientation_Z.colores(color.avgRGB, color.avgHSV,RH,RS)
+            self.lineorientation_Zs.append(orientation_Z)
+        try:   
+            self.lineModel = np.poly1d(np.polyfit([x1[1], x2[1]], [x1[0], x2[0]], 1))
+        except:
+            pass 
+    
+    def LaneDetection(self, img, hsv, canny, outputImg, original):
+        laneCoordinatesX = []
+        laneCoordinatesY = []
         
-def main()
-    pass
+        for orientation_Z in self.lineorientation_Zs:
+            linesNumber, lineSegments, allSegments = orientation_Z.FindSegments(img, hsv, canny, outputImg, self.lineModel(orientation_Z.yPos))
+            if linesNumber == 1:
+                orientation_Z.update(img, hsv, lineSegments[0])
+                laneCoordinatesY.append((lineSegments[0][0]+lineSegments[0][1])/2)
+                laneCoordinatesX.append(orientation_Z.yPos)
+            orientation_Z.line_Z(self.lineModel(orientation_Z.yPos))
+        
+        if len(laneCoordinatesX)>0:
+            rank = True
+            try:
+                z = np.polyfit(laneCoordinatesX, laneCoordinatesY, 1)
+            except np.RankWarning:
+                rank = False
+            if rank == True:
+                tmpLineModel = np.poly1d(z) 
+                self.lineModel = tmpLineModel
+            
+            self.lineModel = np.poly1d(np.polyfit(laneCoordinatesX, laneCoordinatesY, 1))
+            for orientation_Z in self.lineorientation_Zs:
+                cv.circle(outputImg, (int(self.lineModel(orientation_Z.yPos)), orientation_Z.yPos), 2, [200, 0, 100], 3)
+        self.CheckLinePositionAndDrawOutput(original, img)
+
+    def CheckLinePositionAndDrawOutput(self, original, img):
+        #arduino = serial.Serial('/dev/tty.usbmodem1411', 9600)
+        #time.sleep(1) # waiting the initialization...
+
+        testLineXOkColor = np.array([0,255,0])/1.0
+
+        testLineXAlertColor = np.array([0,128,255])/1.0
+        testLineXDangerColor = np.array([0,0,255])/1.0
+        
+        testLeftLineXAlert = 130
+        testLeftLineXDanger = 130
+
+        testRightLineXAlert = 550
+        testRightLineXDanger = 550
+
+        testLeftLineY = 100
+        
+        #find intersection of a lane edge and test line
+        testLeftLineIntersection = int(self.lineModel(testLeftLineY))
+        
+
+        #make final output
+        orientation = 'Ok'
+        orientationColor = [0, 255, 0]
+
+        if testLeftLineIntersection < img.shape[1]/2: 
+            if testLeftLineXAlert < testLeftLineIntersection: 
+                orientation = 'AlertLeft'
+                orientationColor = testLineXAlertColor
+            if testLeftLineXDanger < testLeftLineIntersection: 
+                orientation = 'DangerLeft'
+                orientationColor = testLineXDangerColor
+
+        if testLeftLineIntersection > img.shape[1]/2: 
+            if testLeftLineIntersection < testRightLineXAlert: 
+                orientation = 'AlertRight'
+                orientationColor = testLineXAlertColor
+            if testLeftLineIntersection < testRightLineXDanger: 
+                orientation = 'DangerRight'
+                orientationColor = testLineXDangerColor
+
+        cv.line(original, (self.interes[0]+int(self.lineModel(0)), self.interes[1]+0), (self.interes[0]+int(self.lineModel(img.shape[0])), self.interes[1]+img.shape[0]), [0, 255, 0], 4)        
 
 
+        if orientation == 'AlertLeft' or orientation == 'DangerLeft':
+            cv.line(original, (img.shape[1]/2,50), (img.shape[1]/2-25,75), orientationColor, 15)
+            cv.line(original, (img.shape[1]/2,100), (img.shape[1]/2-25,75), orientationColor, 15)
+            #arduino.write('R')
+            #time.sleep(1) 
+            print "Orientacion: Hacia la Izquierda"
+
+        if orientation == 'DangerLeft':
+            cv.line(original, (img.shape[1]/2-30,50), (img.shape[1]/2-25-30,75), orientationColor, 15)
+            cv.line(original, (img.shape[1]/2-30,100), (img.shape[1]/2-25-30,75), orientationColor, 15)
+
+        if orientation == 'AlertRight' or orientation == 'DangerRight':
+            cv.line(original, (img.shape[1]/2,50), (img.shape[1]/2+25,75), orientationColor, 15)
+            cv.line(original, (img.shape[1]/2,100), (img.shape[1]/2+25,75), orientationColor, 15)
+            #arduino.write('L')
+            print "Orientacion: Hacia la Derecha"
+
+        if orientation == 'DangerRight':
+            cv.line(original, (img.shape[1]/2+30,50), (img.shape[1]/2+25+30,75), orientationColor, 15)
+            cv.line(original, (img.shape[1]/2+30,100), (img.shape[1]/2+25+30,75), orientationColor, 15)
