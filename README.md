@@ -39,7 +39,7 @@ Mas Informacion
 [Blog personal](http://blog.rafaellopezgtz.com)
 
 Proyecto final de la materia de Visión Computacional de la carrera Ingeniería en Tecnologías de Software, FIME, UANL.
-Impartida por la Dra. Elisa Schaeffer en el periodo enero-agosto 2013
+Impartida por la Dra. Elisa Schaeffer
 
 
 Fecha Actualizacion: 23 Mayo 2013
