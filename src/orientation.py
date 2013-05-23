@@ -50,7 +50,7 @@ class Lane():
         canny = cannyGlobal[self.yPos, self.xPos:(self.xPos+self.width)]
 
         probability, reliability = self.probabilidad_(rgb, hsv)
-
+        if canny.shape[0] == 0: return [0, [], []]
         segStart = 0
         while canny[segStart] == 0: #find start of a first segment
             segStart+=1 
