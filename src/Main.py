@@ -5,12 +5,14 @@ from LaneDetection import LineDetector
 import time, sys
 
 entrada = sys.argv[1]
-arduino = sys.argv[2]
-
-if arduino == "True" :
-    REALTIME = True
-else:
-    REALTIME = False
+try:
+    arduino = sys.argv[2]
+    if arduino == "True" :
+        REALTIME = True
+    else:
+        REALTIME = False
+except:
+    pass
 print ">>>> Video de entrada", entrada
 log = open("log.txt","w")
 log.close()
