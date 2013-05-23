@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 from orientation import Lane
-from LaneDetection import LineDetector
+from LineDetection import LineDetector
 import time, sys
 
 entrada = sys.argv[1]
