@@ -24,12 +24,15 @@ contiene lo necesario para hacer un analisis de desempeño
 Tiempo real o test de un video:
 
     True (Captura de una Webcam)
-    False (Test desde un video)
+    VIDEO (Nombre del video y su extencion)
+    Ejemplo de test video : python Main.py video.mp4
+    Ejemplo test realtime : python Main.py True
+
     
 Para correr el programa, en la terminal,una vez ubicado en el directorio raiz del proyecto
 y escribir el comando:
 
-    python Main.py [Nombre_video] [True o False]
+    python Main.py [OPCION] 
     
 Mas Informacion
 ===
