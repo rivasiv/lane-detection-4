@@ -1,6 +1,8 @@
 Lane Detection
 ===============
 
+![logo](http://4.bp.blogspot.com/-6yHCCA4Zwjc/UaF7-QmrHMI/AAAAAAAABOI/tR4Ytc4ntrM/s1600/img.png)
+
 El proposito del proyecto es sistema de detección de salidas de carril basado en visión por computador.
 Se obtienen imágenes mediante una camara de vídeo situada en el vehiculo y posteriormente se testea el
 algoritmo de detección fuera de la ejecución en tiempo real. En ausencia de las dos líneas en las zonas
