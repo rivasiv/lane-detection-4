@@ -6,13 +6,6 @@ Se obtienen imágenes mediante una camara de vídeo situada en el vehiculo y pos
 algoritmo de detección fuera de la ejecución en tiempo real. En ausencia de las dos líneas en las zonas
 laterales del campo de visión de la cámara, se da un aviso de salida de carril.
 
-Instalación
-===========
-
-No es necesario instalar el programa, basta con descargarlo
-para poder ejecutarlo. Para ver los requerimientos necesarios
-para ejecutarlo correctamente, ver el archivo "INSTALL".
-
 
 Uso
 ===
@@ -49,4 +42,4 @@ Proyecto de Visión Computacional de la carrera Ingeniería en Tecnología de So
 y Eléctrica,Impartida por la Dra. Elisa Schaeffer.
 
 
-Fecha Actualizacion: 23 Mayo 2013
+Fecha Actualizacion: 25 Mayo 2013
